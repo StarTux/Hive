@@ -34,7 +34,7 @@ public final class HivePlacer {
     private BukkitTask task;
     private boolean busy;
     private final Random random = new Random();
-    private boolean shouldPlaceForReal = false;
+    private boolean shouldPlaceForReal = true;
 
     public HivePlacer(final World world) {
         this.world = world;
@@ -125,11 +125,11 @@ public final class HivePlacer {
             }
         }
         // No return
-        hivePlugin().getLogger().info("[Placer] WOULD place at " + hiveBlock.getX() + " " + hiveBlock.getY() + " " + hiveBlock.getZ());
         chunkList.clear();
         placedHives.add(hiveArea);
         if (shouldPlaceForReal) {
-            final Structure structure = new Structure(world.getName(), new NamespacedKey(hivePlugin(), "hive"), Vec2i.of(chunk), hiveArea, null, false);
+            hivePlugin().getLogger().info("[Placer] place at " + hiveBlock.getX() + " " + hiveBlock.getY() + " " + hiveBlock.getZ());
+            final Structure structure = new Structure(world.getName(), new NamespacedKey(hivePlugin(), "hive"), Vec2i.of(chunk), hiveArea, "{}", false);
             structurePlugin().getStructureCache().addStructure(structure);
             floor.setType(Material.BEDROCK);
             nborN.setType(Material.BEDROCK);
@@ -138,6 +138,8 @@ public final class HivePlacer {
             nborE.setType(Material.BEDROCK);
             hiveBlock.setType(Material.TRIAL_SPAWNER);
             hivePlugin().getBlockRegistryEntry().set(hiveBlock);
+        } else {
+            hivePlugin().getLogger().info("[Placer] WOULD place at " + hiveBlock.getX() + " " + hiveBlock.getY() + " " + hiveBlock.getZ());
         }
     }
 
