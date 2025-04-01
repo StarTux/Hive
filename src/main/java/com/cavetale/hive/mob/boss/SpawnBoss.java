@@ -27,7 +27,7 @@ public abstract class SpawnBoss implements SpawnMob {
         SPAWN_BOSSES.add(new SimpleBoss(EntityType.CAVE_SPIDER, 8.0));
         SPAWN_BOSSES.add(new SimpleBoss(EntityType.SLIME, 4.0));
         SPAWN_BOSSES.add(new SimpleBoss(EntityType.MAGMA_CUBE, 4.0));
-        SPAWN_BOSSES.add(new SimpleBoss(EntityType.PIGLIN_BRUTE, 4.0));
+        // SPAWN_BOSSES.add(new SimpleBoss(EntityType.PIGLIN_BRUTE, 4.0));
         SPAWN_BOSSES.add(new SimpleBoss(EntityType.WITCH, 4.0));
         SPAWN_BOSSES.add(new SimpleBoss(EntityType.SILVERFISH, 16.0));
         SPAWN_BOSSES.add(new SimpleBoss(EntityType.BREEZE, 4.0));
