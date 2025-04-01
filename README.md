@@ -1,0 +1,3 @@
+# Hive
+
+Hive plugin.

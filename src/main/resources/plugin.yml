@@ -1,0 +1,31 @@
+main: com.cavetale.hive.HivePlugin
+name: Hive
+
+version: ${version}
+api-version: '1.21'
+
+author: StarTux
+website: https://github.com/StarTux/Hive
+description: Hive Plugin
+
+depend:
+- Core
+- Mytems
+- Structure
+- WorldMarker
+softdepend: []
+
+commands:
+
+  hive:
+    aliases: []
+    description: Hive Command
+    permission: hive.hive
+    usage: |-
+      /hive
+
+permissions:
+
+  hive.hive:
+    description: Use /hive
+    default: op
