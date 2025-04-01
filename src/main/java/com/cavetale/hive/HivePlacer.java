@@ -41,8 +41,8 @@ public final class HivePlacer {
         final WorldBorder border = world.getWorldBorder();
         final double hsize = border.getSize() * 0.5;
         final Location center = border.getCenter();
-        worldBorderCuboid = new Cuboid((int) (center.getX() - hsize), world.getMinHeight(), (int) (center.getX() - hsize),
-                                       (int) (center.getZ() + hsize), world.getMaxHeight(), (int) (center.getZ() + hsize));
+        worldBorderCuboid = new Cuboid((int) (center.getX() - hsize), world.getMinHeight(), (int) (center.getZ() - hsize),
+                                       (int) (center.getX() + hsize), world.getMaxHeight(), (int) (center.getZ() + hsize));
         final Cuboid regionCuboid = worldBorderCuboid.applyCoords(i -> i >> 9);
         hivePlugin().getLogger().info("[Placer] regionCuboid " + regionCuboid);
         for (int rz = regionCuboid.az + 1; rz < regionCuboid.bz; rz += 1) {
@@ -107,8 +107,8 @@ public final class HivePlacer {
         final Block nborE = world.getHighestBlockAt(bx + 1, bz);
         if (!isGoodFloor(nborE.getType()) || nborE.getY() != floor.getY()) return;
         final Block hiveBlock = floor.getRelative(0, 3, 0);
-        final Cuboid hiveArea = new Cuboid(hiveBlock.getX() - 32, hiveBlock.getY() - 16, hiveBlock.getX() - 32,
-                                           hiveBlock.getX() + 32, hiveBlock.getY() + 16, hiveBlock.getX() + 32);
+        final Cuboid hiveArea = new Cuboid(hiveBlock.getX() - 32, hiveBlock.getY() - 16, hiveBlock.getZ() - 32,
+                                           hiveBlock.getX() + 32, hiveBlock.getY() + 16, hiveBlock.getZ() + 32);
         final Cuboid expandedHiveArea = hiveArea.outset(240, 0, 240);
         // Cannot overlap any existing structures
         if (!structurePlugin().getStructureCache().within(world.getName(), hiveArea).isEmpty()) {
