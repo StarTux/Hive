@@ -2,6 +2,7 @@ package com.cavetale.hive;
 
 import com.cavetale.core.event.hud.PlayerHudEvent;
 import com.cavetale.core.event.hud.PlayerHudPriority;
+import com.cavetale.core.item.ItemKinds;
 import com.cavetale.core.struct.Cuboid;
 import com.cavetale.core.struct.Vec2i;
 import com.cavetale.core.struct.Vec3i;
@@ -11,6 +12,7 @@ import com.cavetale.hive.mob.boss.SpawnBoss;
 import com.cavetale.mytems.Mytems;
 import com.cavetale.mytems.loot.Loot;
 import com.cavetale.mytems.util.Collision;
+import com.cavetale.worldmarker.block.BlockMarker;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,6 +46,7 @@ import org.bukkit.util.Vector;
 import static com.cavetale.hive.HivePlugin.hivePlugin;
 import static net.kyori.adventure.text.Component.empty;
 import static net.kyori.adventure.text.Component.text;
+import static net.kyori.adventure.text.Component.textOfChildren;
 import static net.kyori.adventure.text.format.NamedTextColor.*;
 import static net.kyori.adventure.title.Title.title;
 
@@ -566,9 +569,12 @@ public final class Hive {
 
     public void breakBlock(Player player) {
         block.breakNaturally();
+        BlockMarker.resetId(block);
         if (!loot.isEmpty()) {
             final ItemStack drop = loot.get(random.nextInt(loot.size()));
             block.getWorld().dropItem(block.getLocation().add(0.5, 0.5, 0.5), drop);
+            player.sendMessage(textOfChildren(text("Hive reward ", GOLD),
+                                              ItemKinds.chatDescription(drop)));
         }
         disable();
     }
