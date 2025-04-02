@@ -220,8 +220,10 @@ public final class Hive {
     }
 
     private void rollLoot() {
-        final int total = 7;
-        final int primeCount = (level + 10) / 20;
+        final int total = level < 80
+            ? 7
+            : Math.max(3, 7 - ((level - 70) / 10));
+        final int primeCount = Math.min(total, level / 10);
         final int regularCount = total - primeCount;
         final List<ItemStack> prime = new ArrayList<>();
         Loot.loot().populatePrimeLoot(prime, primeCount);
