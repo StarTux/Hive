@@ -3,6 +3,7 @@ package com.cavetale.hive;
 import com.cavetale.core.event.hud.PlayerHudEvent;
 import com.cavetale.hive.mob.HiveEntityComponent;
 import com.cavetale.hive.mob.SimpleSpawnMob;
+import com.destroystokyo.paper.event.entity.EndermanEscapeEvent;
 import com.destroystokyo.paper.event.entity.EntityPathfindEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
@@ -113,5 +114,16 @@ public final class HiveListener implements Listener {
             final HiveEntityComponent damagerComponent = HiveEntityComponent.get(event.getDamager());
             if (damagerComponent != null) event.setCancelled(true);
         }
+    }
+
+    /**
+     * Stop Endermen from teleporting away from the rain.
+     */
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
+    private void onEndermanEscape(EndermanEscapeEvent event) {
+        if (event.getReason() != EndermanEscapeEvent.Reason.DROWN) return;
+        final HiveEntityComponent component = HiveEntityComponent.get(event.getEntity());
+        if (component == null) return;
+        event.setCancelled(true);
     }
 }

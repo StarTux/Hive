@@ -91,7 +91,7 @@ public final class Hive {
     public Hive(final Block block) {
         this.block = block;
         this.world = block.getWorld();
-        this.area = new Cuboid(block.getX() - radius, block.getY() - radius, block.getZ() - radius,
+        this.area = new Cuboid(block.getX() - radius, block.getY() - 16, block.getZ() - radius,
                                block.getX() + radius, world.getMaxHeight(), block.getZ() + radius);
         for (Vec3i v3 : area.blockToChunk().enumerate()) {
             chunks.add(v3.toVec2i());
