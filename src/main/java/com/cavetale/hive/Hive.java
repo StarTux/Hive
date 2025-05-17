@@ -288,7 +288,7 @@ public final class Hive {
     }
 
     public void onPlayerHud(PlayerHudEvent event) {
-        event.bossbar(PlayerHudPriority.DEFAULT, text("Hive Level " + level, RED), BossBar.Color.RED, BossBar.Overlay.PROGRESS,
+        event.bossbar(PlayerHudPriority.HIGH, text("Hive Level " + level, RED), BossBar.Color.RED, BossBar.Overlay.PROGRESS,
                       Set.of(BossBar.Flag.CREATE_WORLD_FOG), percentage);
     }
 
