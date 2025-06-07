@@ -1,5 +1,6 @@
 package com.cavetale.hive;
 
+import com.cavetale.core.event.entity.PlayerEntityAbilityQuery;
 import com.cavetale.core.event.hud.PlayerHudEvent;
 import com.cavetale.hive.mob.HiveEntityComponent;
 import com.cavetale.hive.mob.SimpleSpawnMob;
@@ -125,5 +126,16 @@ public final class HiveListener implements Listener {
         final HiveEntityComponent component = HiveEntityComponent.get(event.getEntity());
         if (component == null) return;
         event.setCancelled(true);
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+    private void onPlayerEntityAbility(PlayerEntityAbilityQuery query) {
+        if (query.getAction() != PlayerEntityAbilityQuery.Action.CATCH) {
+            return;
+        }
+        final HiveEntityComponent component = HiveEntityComponent.get(query.getEntity());
+        if (component != null && component.isBoss()) {
+            query.setCancelled(true);
+        }
     }
 }

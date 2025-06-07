@@ -78,6 +78,10 @@ public interface SpawnMob {
         return true;
     }
 
+    default boolean isBoss() {
+        return false;
+    }
+
     /**
      * This default implementation only works if the mob has the
      * HiveEntityComponent attached, which is only done by the hive.

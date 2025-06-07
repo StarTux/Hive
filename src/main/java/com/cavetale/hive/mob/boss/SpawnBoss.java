@@ -51,6 +51,11 @@ public abstract class SpawnBoss implements SpawnMob {
         return 1;
     }
 
+    @Override
+    public final boolean isBoss() {
+        return true;
+    }
+
     /**
      * Default callback for any spawned boss.  Must be called by the
      * implementing spawn function in the subclass.

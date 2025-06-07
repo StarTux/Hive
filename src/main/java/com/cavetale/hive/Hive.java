@@ -496,7 +496,9 @@ public final class Hive {
         for (int i = 0; i < 10 && Collision.collidesWithBlock(world, entity.getBoundingBox()); i += 1) {
             entity.teleport(getRandomSpawnLocation());
         }
-        new HiveEntityComponent(this, spawnMob).attach(entity);
+        final HiveEntityComponent component = new HiveEntityComponent(this, spawnMob);
+        component.attach(entity);
+        if (spawnMob.isBoss()) component.setBoss(true);
         spawnedMobs.put(entity.getUniqueId(), spawnMob);
         mobsToSpawn.remove(mobsToSpawn.size() - 1);
         return true;
