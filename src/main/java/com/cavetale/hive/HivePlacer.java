@@ -137,7 +137,7 @@ public final class HivePlacer {
             nborW.setType(Material.BEDROCK);
             nborE.setType(Material.BEDROCK);
             hiveBlock.setType(Material.TRIAL_SPAWNER);
-            hivePlugin().getBlockRegistryEntry().set(hiveBlock);
+            hivePlugin().getBlockRegistryEntry().setBlockId(hiveBlock);
         } else {
             hivePlugin().getLogger().info("[Placer] WOULD place at " + hiveBlock.getX() + " " + hiveBlock.getY() + " " + hiveBlock.getZ());
         }
